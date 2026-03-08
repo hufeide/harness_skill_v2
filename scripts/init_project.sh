@@ -37,8 +37,11 @@ echo ""
 GIT_USER=$(git config user.name 2>/dev/null || echo "")
 GIT_EMAIL=$(git config user.email 2>/dev/null || echo "")
 
-# 从参数或环境变量获取，或使用 git config 的值
-GH_USER="${1:-$GITHUB_USER:$GIT_USER}"
+# 默认 GitHub 用户名为 hufeide
+DEFAULT_GH_USER="hufeide"
+
+# 从参数或环境变量获取，或使用 git config 的值，最后使用默认值
+GH_USER="${1:-$GITHUB_USER:-$GIT_USER:-$DEFAULT_GH_USER}"
 if [ -z "$GH_USER" ]; then
     echo -e "${BLUE}检测到 Git 用户信息:${NC}"
     echo "  用户名：$GIT_USER"
@@ -212,6 +215,30 @@ else
     if [ -n "$CURRENT_BRANCH" ] && [ "$CURRENT_BRANCH" != "main" ] && [ "$CURRENT_BRANCH" != "master" ]; then
         echo -e "${YELLOW}⚠ 当前分支不是 main 或 master${NC}"
         echo -e "${BLUE}  当前分支：$CURRENT_BRANCH${NC}"
+    fi
+
+    # 配置远程仓库 URL（从 config/project.json 获取）
+    echo -e "${YELLOW}配置远程仓库...${NC}"
+
+    # 从 config/project.json 读取 URL
+    if [ -f "$PROJECT_ROOT/config/project.json" ]; then
+        GITHUB_URL=$(grep '"url"' "$PROJECT_ROOT/config/project.json" | head -1 | cut -d'"' -f4)
+        # 移除 .git 后缀（如果存在）
+        GITHUB_URL=$(echo "$GITHUB_URL" | sed 's/\.git$//')
+    else
+        # 默认 URL
+        GITHUB_URL="https://github.com/$GH_USER/$PROJECT_NAME"
+    fi
+
+    # 检查是否已有 remote
+    if git remote get-url origin &> /dev/null; then
+        # 更新现有的 origin
+        git remote set-url origin "$GITHUB_URL"
+        echo -e "${GREEN}✓ 远程仓库已更新：$GITHUB_URL${NC}"
+    else
+        # 添加新的 remote
+        git remote add origin "$GITHUB_URL"
+        echo -e "${GREEN}✓ 远程仓库已添加：$GITHUB_URL${NC}"
     fi
 fi
 
