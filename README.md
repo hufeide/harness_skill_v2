@@ -1,236 +1,160 @@
-# Claude Project Skill
+# Claude 技能库 - 智能开发引导系统
 
-Harness engineer 风格的 Claude Skill，支持：
-- 自动化插件安装（skills + MCP + compound-engineering）
-- 多窗口 Claude + Git worktrees
-- Hooks：测试 bug 自动修复、文档更新、自动生成 issue
-- 文档管理（claude.md + 关键背景文档）
-- slash 命令 & commit commands
+> 让 Claude 成为你的开发伙伴，提供智能引导和自动化工作流
 
-**特色：** 智能引导系统，带你完成整个开发流程
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/yourusername/harness_skill)
 
----
+## 30秒了解
 
-## 快速开始
+这个技能库能做什么？
 
-### 在新项目中初始化
+- ✅ **智能引导**：不知道下一步做什么？说"我迷路了"，Claude会告诉你
+- ✅ **自动化工作流**：提交代码自动检查、自动更新文档、自动创建issues
+- ✅ **最佳实践内置**：TDD开发、代码审查、Git工作流一应俱全
+- ✅ **自然语言驱动**：完全不用记命令，用自然语言就能操作
 
-在**你的项目目录**中运行：
-
-```bash
-bash scripts/init_project.sh
-```
-
-这会在**当前目录**创建以下结构：
-
-```
-<当前目录>/
-├── config/
-│   └── env.json
-├── docs/
-│   ├── plans/
-│   └── decisions/
-├── scripts/
-├── src/
-├── tests/
-├── CLAUDE.md
-├── README.md
-├── .gitignore
-└── .guide_state
-```
-
-**注意**: 所有脚本使用 `$(pwd)` 自动检测当前项目目录，可以在任何空项目中使用。
-
-### 查看引导
+## 5分钟快速开始
 
 ```bash
+# 1. 克隆项目
+git clone https://github.com/yourusername/harness_skill.git
+cd harness_skill
+
+# 2. 一键快速开始
+bash scripts/quickstart.sh
+
+# 3. 在Claude中说"我迷路了"，开始你的开发之旅
+```
+
+就这么简单！🎉
+
+## 核心功能
+
+### 智能引导系统
+
+```bash
+# 查看当前状态和下一步建议
 bash scripts/guide.sh
+
+# 或者直接在Claude中说：
+# "我迷路了"
+# "下一步做什么"
+# "查看状态"
 ```
 
-**会显示：**
-- 当前项目状态
-- 下一步建议
-- 最佳实践
-- 技能速查表
+### 完整开发工作流
 
-### 验证配置
+```
+项目初期 → 需求分析 → 任务规划 → 功能开发 → 代码审查 → 部署上线
+   ↓          ↓         ↓         ↓         ↓         ↓
+ 初始化   brainstorming  创建计划   TDD开发   自动审查   验证完成
+```
+
+### 自动化工具
+
+- **Hooks**：提交前自动检查代码质量和测试
+- **文档管理**：自动更新文档和变更日志
+- **GitHub集成**：自动创建和管理issues
+- **多窗口开发**：Git worktrees支持并行开发
+
+## 技能命令速查
+
+| 场景 | 命令 | 说明 |
+|------|------|------|
+| 开始新功能 | `/brainstorming` | 需求探索和方案设计 |
+| 创建计划 | `/writing-plans` | 生成详细实施计划 |
+| 开发功能 | `/test-driven-development` | TDD方式开发 |
+| 调试问题 | `/systematic-debugging` | 系统化调试流程 |
+| 代码审查 | `/requesting-code-review` | 专业代码审查 |
+| 完成验证 | `/verification-before-completion` | 提交前完整检查 |
+
+## 文档导航
+
+- 📖 [快速开始指南](docs/快速开始.md) - 5分钟上手
+- 📚 [完整使用指南](docs/完整指南.md) - 详细功能说明
+- 🔧 [API参考手册](docs/API参考.md) - 所有命令和脚本
+- 💡 [最佳实践](docs/最佳实践.md) - 工作流和技巧
+- 🔍 [故障排除](docs/故障排除.md) - 常见问题解决
+
+## 示例项目
+
+查看 `examples/` 目录了解实际使用案例：
+
+- [simple-api](examples/simple-api/) - 简单REST API开发示例
+- [full-stack](examples/full-stack/) - 全栈应用开发示例
+
+## 项目模板
+
+使用预设模板快速开始：
 
 ```bash
-bash scripts/check_setup.sh
+# Node.js项目
+cp -r templates/node-project/* your-project/
+
+# Python项目
+cp -r templates/python-project/* your-project/
+
+# Ruby项目
+cp -r templates/ruby-project/* your-project/
 ```
-
-**预期结果：** 16 项检查全部通过
-
----
-
-## 完整工作流程
-
-```
-项目初期 ──→ 项目开始 ──→ 开发中 ──→ 里程碑完成
-   │            │           │           │
-   │            │           │           └──→ 回到开发中
-   │            │           │
-   │            │           └── 循环执行
-   │            │
-   │            └── 规划完成
-   │
-   └── 设置完成
-```
-
-### 阶段 1: 项目初期
-
-**运行初始化：**
-```bash
-bash scripts/init_project.sh
-```
-
-**查看引导：**
-```bash
-bash scripts/guide.sh
-```
-
-**检查设置：**
-```bash
-bash scripts/check_setup.sh
-```
-
-### 阶段 2: 项目开始
-
-**需求分析：**
-```
-/brainstorming
-```
-
-**创建计划：**
-```
-/writing-plans
-```
-
-**创建任务：**
-```bash
-/todos create "任务 1"
-/todos create "任务 2"
-```
-
-**创建分支：**
-```
-/using-git-worktrees
-```
-
-### 阶段 3: 开发中
-
-**开发新功能：**
-```
-/brainstorming → /writing-plans → 编码 → /requesting-code-review → /verification-before-completion → /finishing-a-development-branch
-```
-
-**修复 Bug：**
-```
-/systematic-debugging → /compound-engineering:workflow:bug-reproduction-validator → 修复 → /verification-before-completion
-```
-
-### 阶段 4: 里程碑完成
-
-**完成检查：**
-- `/compound-engineering:ce:review` - 代码审查
-- `npm test` - 运行测试
-- `bash scripts/update_docs.sh` - 更新文档
-- `/changelog` - 更新变更日志
-- `/finishing-a-development-branch` - 创建 PR
-
----
-
-## 核心技能命令
-
-| 命令 | 用途 | 使用时机 |
-|------|------|---------|
-| `/brainstorming` | 需求探索 | 开始任何新功能前 |
-| `/writing-plans` | 创建计划 | 需求明确后 |
-| `/test-driven-development` | TDD 开发 | 编写新功能 |
-| `/systematic-debugging` | 调试 | 遇到 bug |
-| `/using-git-worktrees` | 分支管理 | 开始新功能 |
-| `/requesting-code-review` | 代码审查 | 完成功能后 |
-| `/verification-before-completion` | 完成验证 | 提交前 |
-
----
-
-## 脚本说明
-
-| 脚本 | 用途 |
-|------|------|
-| `scripts/init_project.sh` | 项目初始化 |
-| `scripts/guide.sh` | **智能引导（推荐）** |
-| `scripts/check_setup.sh` | 检查项目设置 |
-| `scripts/setup_hooks.sh` | 配置 Hooks |
-| `scripts/update_docs.sh` | 更新文档 |
-| `scripts/create_issues.sh` | 创建 GitHub issues |
-
----
-
-## 文档
-
-- `docs/GUIDE.md` - **完整开发引导（推荐从这里开始）**
-- `docs/development_workflow.md` - 工作流程说明
-- `docs/testing.md` - 测试文档
-
----
 
 ## 配置
 
-### 环境变量
+首次使用需要配置环境变量：
 
-编辑 `config/env.json`：
+```bash
+# 复制配置模板
+cp config/env.example.json config/env.json
 
-```json
-{
-  "PROJECT_NAME": "my-project",
-  "GITHUB_TOKEN": "ghp_...",
-  "DATABASE_URL": "mongodb://localhost:27017/mydb",
-  "MODEL": "claude-v1",
-  "DEFAULT_BRANCH": "main"
-}
+# 编辑配置
+vim config/env.json
 ```
 
-### Hooks
+主要配置项：
+- `PROJECT_NAME` - 项目名称
+- `GITHUB_TOKEN` - GitHub访问令牌（可选）
+- `DATABASE_URL` - 数据库连接（如需要）
 
-Hooks 配置在 `~/.claude/hooks/`：
+## 验证安装
 
-- `pre_commit` - 提交前检查
-- `post_commit` - 提交后更新
+```bash
+bash scripts/check_setup.sh
+```
 
----
+预期结果：16项检查全部通过 ✅
 
-## 故障排除
+## 常见问题
 
-### 技能找不到
+**Q: 我迷路了，不知道该做什么？**
+```bash
+bash scripts/guide.sh
+# 或在Claude中说"我迷路了"
+```
 
+**Q: 技能命令找不到？**
 ```bash
 /find-skills
 ```
 
-### Hooks 未执行
+**Q: 需要帮助？**
 
-```bash
-chmod +x ~/.claude/hooks/*
-```
+查看 [故障排除文档](docs/故障排除.md) 或提交 [Issue](https://github.com/yourusername/harness_skill/issues)
 
-### 插件安装失败
+## 贡献
 
-```bash
-rm -rf ~/.claude/plugins/cache
-bash scripts/setup_plugins.sh
-```
-
-### 迷路了？
-
-```bash
-bash scripts/guide.sh
-```
-
-查看「下一步建议」。
-
----
+欢迎贡献！请查看 [贡献指南](CONTRIBUTING.md)
 
 ## 许可证
 
-MIT
+MIT License - 详见 [LICENSE](LICENSE) 文件
+
+## 致谢
+
+灵感来源于 Harness Engineer 的工作方式，感谢所有贡献者！
+
+---
+
+**开始你的智能开发之旅** 🚀
+
+有问题？运行 `bash scripts/guide.sh` 或在Claude中说"我需要帮助"
