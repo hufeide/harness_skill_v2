@@ -6,6 +6,7 @@ config/env.json
 # 状态文件
 .guide_state
 .guide_history
+.claude/
 
 # IDE
 .vscode/

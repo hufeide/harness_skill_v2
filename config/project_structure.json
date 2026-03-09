@@ -1,0 +1,22 @@
+{
+  "description": "初始化后的推荐项目结构（由 harness_skill 脚本创建/期望）。用于文档与脚本的约定对齐。",
+  "directories": [
+    "config",
+    "docs",
+    "docs/plans",
+    "docs/decisions",
+    "scripts",
+    "src",
+    "tests"
+  ],
+  "state_files": [
+    ".guide_state",
+    ".guide_history",
+    ".todos"
+  ],
+  "notes": [
+    "这个文件描述的是“业务项目目录”的结构，而不是本 skill 仓库自身必须包含的结构。",
+    "建议将 .guide_state/.guide_history/.todos 视为运行时状态文件，并通过 .gitignore 忽略。"
+  ]
+}
+

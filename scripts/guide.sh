@@ -433,7 +433,8 @@ interactive_guide() {
     echo "  3) 查看技能速查表"
     echo "  4) 运行完整检查"
     echo "  5) 开始 brainstorming"
-    echo "  6) 退出"
+    echo "  6) 提交并推送代码"
+    echo "  7) 退出"
     echo ""
 
     read -p "请选择 (1-6): " -n 1 -r
@@ -459,6 +460,11 @@ interactive_guide() {
             echo "运行：/brainstorming"
             ;;
         6)
+            echo ""
+            echo -e "${GREEN}提交并推送代码...${NC}"
+            bash "$SCRIPT_DIR/git_commit.sh"
+            ;;
+        7)
             echo ""
             echo -e "${GREEN}再见！祝你开发顺利！🚀${NC}"
             echo ""

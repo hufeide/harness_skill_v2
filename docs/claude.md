@@ -1,5 +1,7 @@
 # Claude Project
 
+> 说明：这个文件是 `skill.json` 中 `claude_docs` 的入口，用于给 Claude 提供“本 skill 仓库”的工作上下文。
+
 ## 项目架构
 - API
 - Database
@@ -20,6 +22,10 @@
 - change.log
 - project_status.md
 - core_feature_reference.md
+
+## 文档导航（给人类）
+
+查看 `README.md`。
 
 ## 自动更新
 - milestone 完成后自动更新

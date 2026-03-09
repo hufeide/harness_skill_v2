@@ -171,7 +171,7 @@ project/
 - 更详细的说明
 - 更多的示例
 
-### 2. docs/BUG_REPORT.md
+### 2. docs/dev/BUG_REPORT.md
 
 **新增 Bug**:
 - Bug #8: 需求分析后没有自动生成 plan

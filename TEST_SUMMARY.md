@@ -81,7 +81,7 @@
 
 ## 文档输出
 
-1. ✅ `docs/BUG_REPORT.md` - 详细 Bug 报告
+1. ✅ `docs/dev/BUG_REPORT.md` - 详细 Bug 报告
 2. ✅ `project/docs/decisions/002-技能库bug记录.md` - Bug 记录
 3. ✅ `TEST_SUMMARY.md` - 本文档
 
