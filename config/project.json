@@ -1,13 +1,13 @@
 {
   "github": {
-    "user": ":-hufeide:-hufeide",
-    "repo": ":harness_skill",
-    "url": "https://github.com/:-hufeide:-hufeide/:harness_skill",
+    "user": "",
+    "repo": "harness_skill",
+    "url": "",
     "token": ""
   },
   "project": {
-    "name": ":harness_skill",
-    "description": "我的项目",
+    "name": "harness_skill",
+    "description": "Harness engineer 风格的 Claude 项目自动化技能库",
     "default_branch": "main"
   }
 }

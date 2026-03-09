@@ -1,15 +1,48 @@
-node_modules/
-dist/
-*.log
+# 环境配置
+config/env.json
 .env
 .env.local
-.DS_Store
 
-# Claude Project 状态文件（可选追踪）
+# 状态文件
 .guide_state
 .guide_history
-.todos
 
-# 源代码目录（可选，如果希望追踪代码则删除）
-# src/
-# tests/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+logs/
+
+# 依赖
+node_modules/
+vendor/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 构建产物
+dist/
+build/
+*.egg-info/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# Git
+*.orig
+
+# 敏感信息
+*.pem
+*.key
+secrets/

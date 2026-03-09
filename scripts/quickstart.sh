@@ -115,6 +115,9 @@ echo ""
 echo -e "${YELLOW}[步骤 5/6] 配置项目文件${NC}"
 echo ""
 
+# 创建必要的目录
+mkdir -p config docs/plans docs/decisions src tests scripts
+
 # 检查 env.json
 if [ ! -f "config/env.json" ]; then
     echo -e "${YELLOW}创建 config/env.json...${NC}"

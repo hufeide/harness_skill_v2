@@ -328,6 +328,11 @@ show_stage_recommendation() {
                 bash "$SCRIPT_DIR/update_readme.sh"
             fi
             echo ""
+            # 记录完成历史
+            local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+            echo "[$timestamp] completed - 项目完成并推送到 GitHub" >> "$GUIDE_HISTORY_FILE"
+            echo -e "${GREEN}✓ 历史记录已更新${NC}"
+            echo ""
             echo -e "${GREEN}推荐操作:${NC}"
             echo "  1. 开始新功能：/brainstorming"
             echo "  2. 查看项目：$GITHUB_URL"
